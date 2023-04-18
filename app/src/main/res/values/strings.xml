@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeatherClothesSugest</string>
+    <string name="next">Next</string>
+    <string name="Suggested_clothes">Suggested clothes</string>
+</resources>
