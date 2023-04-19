@@ -35,20 +35,20 @@ class MainActivity : AppCompatActivity(), IWeatherView {
     override fun onWeatherSuccess(weatherData: WeatherData) {
         runOnUiThread {
             binding.layoutWeatherCard.apply {
-                textViewDate.text = getDayNameFromTimestamp(weatherData.dt.toString().toLong())
+                textViewDate.text = getFormattedDate(weatherData.dt.toString().toLong())
                 textViewTemperature.text = "${convertToCelsius(weatherData.main.temp)} °C"
                 textViewLocation.text = "${weatherData.sys.country},${weatherData.name}"
                 textViewWindSpeed.text = "${weatherData.wind.speed} m/s"
                 textViewHumidityCard.text = "${weatherData.main.humidity} %"
                 imageViewStatus.setImageResource(getTemperatureIcon(
-                    convertToCelsius(weatherData.main.temp).toString().toDouble()))
+                    convertToCelsius(weatherData.main.temp).toDouble()))
             }
 
             binding.layoutClothesCard.apply {
                 imageViewClothes.setImageResource(getRandomImageForTemperature(
-                    convertToCelsius(weatherData.main.temp).toString().toDouble()))
+                    convertToCelsius(weatherData.main.temp).toDouble()))
                 nextSuggest.setOnClickListener {
-                    updateClothImage(convertToCelsius(weatherData.main.temp).toString().toDouble())
+                    updateClothImage(convertToCelsius(weatherData.main.temp).toDouble())
                 }
             }
         }
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), IWeatherView {
         }
     }
 
-    private fun getDayNameFromTimestamp(timestamp: Long): String {
+    private fun getFormattedDate(timestamp: Long): String {
         val date = Date(timestamp * 1000L)
         return SimpleDateFormat("EEEE dd, MMMM", Locale.getDefault()).format(date)
     }
@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(), IWeatherView {
     private fun convertToCelsius(kelvin: Double): Int {
         return (kelvin - 273.15).toInt()
     }
+
 
     private fun getRandomImageForTemperature(temperature: Double): Int {
         val coldImages = listOf(
@@ -78,7 +79,9 @@ class MainActivity : AppCompatActivity(), IWeatherView {
             R.drawable.winter_five,
             R.drawable.winter_six
         )
-        val normalImages = listOf(R.drawable.summer_one, R.drawable.winter_six)
+        val normalImages = listOf(R.drawable.summer_one, R.drawable.winter_six
+            ,R.drawable.summer_three,R.drawable.winter_two)
+
         val hotImages = listOf(
             R.drawable.summer_one,
             R.drawable.one,

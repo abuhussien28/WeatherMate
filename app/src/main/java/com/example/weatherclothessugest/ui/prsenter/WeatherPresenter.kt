@@ -2,14 +2,13 @@ package com.example.weatherclothessugest.ui.prsenter
 
 import com.example.weatherapp.models.base.WeatherData
 import com.example.weatherclothessugest.data.Network.ApiServiceImpl
+import com.example.weatherclothessugest.data.Network.WeatherApiClient
 
 
 class WeatherPresenter(private val view: IWeatherView) {
-    private val service = ApiServiceImpl()
-
-
+    private val service = ApiServiceImpl(WeatherApiClient())
     fun getWeather() {
-        service.getWeather( ::onSuccess, ::onFailure)
+        service.getWeather(::onSuccess, ::onFailure)
     }
 
     private fun onSuccess(response: WeatherData) {
@@ -17,6 +16,6 @@ class WeatherPresenter(private val view: IWeatherView) {
     }
 
     private fun onFailure(message: String?) {
-        view.onWeatherFailure(toString())
+        view.onWeatherFailure(message ?: "")
     }
 }
