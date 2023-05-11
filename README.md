@@ -17,3 +17,9 @@ Check out the demo video on [YouTube][(https://youtube.com/shorts/tFBjAJ9ptiw?fe
 ## 🙏 Credits
 This app was created as a part of my journey with [The Chance](https://github.com/TheChance101).
 helps us to  be the best mobile developers
+
+## 🔔 important note 
+donot forget to add host
+HOST="api.openweathermap.org"
+ and api_key in local.properties
+API_KEY="your key here "
