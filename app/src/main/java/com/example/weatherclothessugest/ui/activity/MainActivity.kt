@@ -1,6 +1,7 @@
 package com.example.weatherclothessugest.ui.activity
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), IWeatherView {
         initPrefs()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onWeatherSuccess(weatherData: WeatherData) {
         runOnUiThread {
             binding.layoutWeatherCard.apply {
@@ -47,8 +49,13 @@ class MainActivity : AppCompatActivity(), IWeatherView {
             binding.layoutClothesCard.apply {
                 imageViewClothes.setImageResource(getRandomImageForTemperature(
                     convertToCelsius(weatherData.main.temp).toDouble()))
-                nextSuggest.setOnClickListener {
-                    updateClothImage(convertToCelsius(weatherData.main.temp).toDouble())
+                nextSuggest.compoundDrawables[2].let { drawable ->
+                    if (drawable != null) {
+                        drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+                        binding.layoutClothesCard.nextSuggest.setOnClickListener {
+                            updateClothImage(convertToCelsius(weatherData.main.temp).toDouble())
+                        }
+                    }
                 }
             }
         }
@@ -59,6 +66,7 @@ class MainActivity : AppCompatActivity(), IWeatherView {
             showNoInternetSnackBar()
         }
     }
+
 
     private fun getFormattedDate(timestamp: Long): String {
         val date = Date(timestamp * 1000L)
@@ -79,8 +87,10 @@ class MainActivity : AppCompatActivity(), IWeatherView {
             R.drawable.winter_five,
             R.drawable.winter_six
         )
-        val normalImages = listOf(R.drawable.summer_one, R.drawable.winter_six
-            ,R.drawable.summer_three,R.drawable.winter_two)
+        val normalImages = listOf(R.drawable.summer_one,
+            R.drawable.winter_six,
+            R.drawable.summer_three,
+            R.drawable.winter_two)
 
         val hotImages = listOf(
             R.drawable.summer_one,
@@ -124,5 +134,6 @@ class MainActivity : AppCompatActivity(), IWeatherView {
     }
 
     private fun initPrefs() = SharedPrefsUtils.initPrefUtil(applicationContext)
+
 
 }
