@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <TextView
         android:id="@+id/text_view_suggested_clothes"
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:text="@string/Suggested_clothes"
+        android:text="@string/suggestedClothes"
         android:textSize="@dimen/font_size_title_large"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,19 +23,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/on_press_button"
-        android:drawableEnd="@drawable/arrow_right"
         android:drawablePadding="@dimen/spacing_small"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/next"
         android:textSize="@dimen/font_size_title"
         app:layout_constraintBottom_toBottomOf="@id/text_view_suggested_clothes"
         app:layout_constraintEnd_toEndOf="@id/image_view_clothes"
-        app:layout_constraintTop_toTopOf="@id/text_view_suggested_clothes" />
+        app:layout_constraintTop_toTopOf="@id/text_view_suggested_clothes"
+        app:drawableEndCompat="@drawable/arrow_right" />
 
     <ImageView
         android:id="@+id/image_view_clothes"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/clothes_height"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginVertical="@dimen/spacing_normal"
         android:scaleType="fitCenter"
@@ -42,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="@id/nextSuggest"
         app:layout_constraintStart_toStartOf="@id/text_view_suggested_clothes"
         app:layout_constraintTop_toBottomOf="@id/nextSuggest"
-        android:contentDescription="@string/Suggested_clothes"
+        android:contentDescription="@string/suggestedClothes"
         tools:src="@drawable/one" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
