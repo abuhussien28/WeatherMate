@@ -17,6 +17,6 @@
 
     <dimen name="radius_normal">8dp</dimen>
     <dimen name="radius_medium">16dp</dimen>
-    <dimen name="clothes_height">250dp</dimen>
-    <dimen name="image_view_status_size">100dp</dimen>
+    <dimen name="clothes_height">300dp</dimen>
+    <dimen name="image_view_status_size">150dp</dimen>
 </resources>
